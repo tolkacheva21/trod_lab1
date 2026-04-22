@@ -5,15 +5,15 @@
 
 <module name="Checker">
 
+    <!-- Длина строки -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+
     <module name="TreeWalker">
 
         <!-- Отступы -->
         <module name="Indentation"/>
-
-        <!-- Длина строки -->
-        <module name="LineLength">
-            <property name="max" value="120"/>
-        </module>
 
         <!-- Именование -->
         <module name="MethodName"/>
