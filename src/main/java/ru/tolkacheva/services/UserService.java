@@ -20,7 +20,8 @@ public class UserService {
     }
 
     public User getUserById(Integer id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public List<User> getAllUsers() {
@@ -28,7 +29,8 @@ public class UserService {
     }
 
     public void changeUser(Integer id, User user) {
-        User newUser = userRepository.findById(id).orElse(null);
+        User newUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
         newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
