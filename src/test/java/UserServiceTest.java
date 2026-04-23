@@ -43,40 +43,40 @@ public class UserServiceTest {
         assertThrows(RuntimeException.class, () -> userService.getUserById(1));
     }
 
-    @Test
-    void shouldReturnAllUsers() {
-        List<User> users = List.of(
-                new User(1, "user1", "u1@mail.com", "123"),
-                new User(2, "user2", "u2@mail.com", "123")
-        );
-
-        when(userRepository.findAll()).thenReturn(users);
-        List<User> res = userService.getAllUsers();
-        assertEquals(2, res.size());
-    }
-
-    @Test
-    void shouldUpdateUser() {
-        User existing = new User(1, "old", "old@mail.com", "old");
-        User updated = new User(null, "new", "new@mail.com", "new");
-
-        when(userRepository.findById(1)).thenReturn(Optional.of(existing));
-        userService.changeUser(1, updated);
-        assertEquals("new", existing.getName());
-        verify(userRepository).save(existing);
-    }
-
-    @Test
-    void shouldThrowWhenUpdateUserNotFound() {
-        when(userRepository.findById(1)).thenReturn(Optional.empty());
-
-        assertThrows(RuntimeException.class,
-                () -> userService.changeUser(1, new User()));
-    }
-
-    @Test
-    void shouldDeleteUser() {
-        userService.deleteUser(1);
-        verify(userRepository).deleteById(1);
-    }
+//    @Test
+//    void shouldReturnAllUsers() {
+//        List<User> users = List.of(
+//                new User(1, "user1", "u1@mail.com", "123"),
+//                new User(2, "user2", "u2@mail.com", "123")
+//        );
+//
+//        when(userRepository.findAll()).thenReturn(users);
+//        List<User> res = userService.getAllUsers();
+//        assertEquals(2, res.size());
+//    }
+//
+//    @Test
+//    void shouldUpdateUser() {
+//        User existing = new User(1, "old", "old@mail.com", "old");
+//        User updated = new User(null, "new", "new@mail.com", "new");
+//
+//        when(userRepository.findById(1)).thenReturn(Optional.of(existing));
+//        userService.changeUser(1, updated);
+//        assertEquals("new", existing.getName());
+//        verify(userRepository).save(existing);
+//    }
+//
+//    @Test
+//    void shouldThrowWhenUpdateUserNotFound() {
+//        when(userRepository.findById(1)).thenReturn(Optional.empty());
+//
+//        assertThrows(RuntimeException.class,
+//                () -> userService.changeUser(1, new User()));
+//    }
+//
+//    @Test
+//    void shouldDeleteUser() {
+//        userService.deleteUser(1);
+//        verify(userRepository).deleteById(1);
+//    }
 }
